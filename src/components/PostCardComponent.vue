@@ -35,16 +35,16 @@ import { Post } from '../models/Post';
 import { AppState } from '../AppState';
 import Pop from '../utils/Pop';
 import { postsService } from '../services/PostsService';
-import { useRouter } from 'vue-router';
+
 import { logger } from '../utils/Logger';
 
 export default {
     props: { post: { type: Post, required: true } },
     setup(props) {
-        const route = useRouter()
+
 
         onMounted(() => {
-            logger.log('post id from route', route.params.postId)
+            // logger.log('post id from route', route.params.postId)
         })
         return {
             activePost: computed(() => AppState.activePost),
@@ -57,8 +57,8 @@ export default {
                         return
                     }
 
+
                     const postId = props.post.id
-                    debugger
                     logger.log('got the id for the delete?', postId)
                     await postsService.destroyComment(postId)
 

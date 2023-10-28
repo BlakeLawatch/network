@@ -15,6 +15,10 @@ export const AppState = reactive({
   // totalPages: 0,
   newer: null,
   older: null,
+
   /** @type {import('./models/Profile.js').Profile | null} */
-  Profile: null
+  profile: null,
+
+  /** @type {import('./models/Promo.js').Promo []} */
+  promos: []
 })

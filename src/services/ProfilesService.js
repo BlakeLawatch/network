@@ -16,10 +16,16 @@ class ProfilesService {
     }
 
     async getPostsById(profileId) {
+
         const res = await api.get(`api/posts?creatorId=${profileId}`)
         AppState.posts = res.data.posts.map((pojo) => new Post(pojo))
+        AppState.older = res.data.older
         logger.log('getting all posts by creator id in the service', res.data)
+
+
     }
+
+
 }
 
 export const profilesService = new ProfilesService()

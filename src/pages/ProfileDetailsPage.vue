@@ -16,14 +16,9 @@
                             <i v-if="profile.resume" class="mdi mdi-file-account" title="Check out my resume"></i>
                             <i v-if="profile.github" class="mdi mdi-github" title="Go to my Github"></i>
                         </div>
+                        <ChangePageComponent />
                     </div>
                     {{ profile.bio }}
-                </div>
-                <div class="col-12 col-md-9 d-flex justify-content-around">
-                    <button :disabled="!newer" @click="changePage(newer)" class="btn btn-outline-info">newer</button>
-
-                    <button :disabled="!older" @click="changePage(older)" class="btn btn-outline-info">older</button>
-
                 </div>
                 <div v-for="post in posts" :key="post.id"
                     class="col-12 col-md-9 ps-4 my-3 shadow background-color py-4 rounded ms-4">
@@ -43,9 +38,8 @@ import { AppState } from '../AppState.js';
 import Pop from '../utils/Pop';
 import { useRoute } from 'vue-router';
 import { profilesService } from '../services/ProfilesService.js';
-import ChangePage from '../components/ChangePage.vue';
-import { logger } from '../utils/Logger';
-import { postsService } from '../services/PostsService';
+import ChangePageComponent from '../components/ChangePageComponent.vue';
+
 
 
 
@@ -55,49 +49,36 @@ export default {
         async function getActiveProfile() {
             try {
                 const profileId = route.params.profileId;
-
                 await profilesService.getActiveProfile(profileId);
             }
             catch (error) {
                 Pop.error(error);
             }
         }
-
         async function getPostsById() {
             try {
+                const profileId = route.params.profileId;
+                // logger.log('this is the profile in the profileDetailsPage', profileId);
 
-                const profileId = route.params.profileId
-                logger.log('this is the profile in the profileDetailsPage', profileId)
-
-                await profilesService.getPostsById(profileId)
-
-            } catch (error) {
-                Pop.error(error)
+                await profilesService.getPostsById(profileId);
+            }
+            catch (error) {
+                Pop.error(error);
             }
         }
 
+
+
         onMounted(() => {
             getActiveProfile();
-            getPostsById()
+            getPostsById();
         });
         return {
             profile: computed(() => AppState.profile),
             posts: computed(() => AppState.posts),
-
-            async changePage(url) {
-
-                try {
-                    await postsService.changePage(url)
-
-                } catch (error) {
-                    Pop.error(error)
-                }
-            }
-
-
         };
     },
-    // components: { ChangePage }
+    components: { ChangePageComponent }
 };
 </script>
 

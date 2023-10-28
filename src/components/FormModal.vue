@@ -46,7 +46,7 @@ export default {
                     const commentData = editable.value
                     await postsService.createComment(commentData)
                     editable.value = {}
-                    Modal.getOrCreateInstance('formModal').hide()
+                    Modal.getOrCreateInstance('#formModal').hide()
 
                 } catch (error) {
                     Pop.error(error)
