@@ -19,15 +19,27 @@ class PostsService {
         logger.log('changing pages!', res.data)
 
         AppState.newer = res.data.newer
-        AppState.older = res.data.previous
+        AppState.older = res.data.older
+        // const newPost = new Post(res.data)
+        // AppState.activePost = newPost
         AppState.posts = res.data.posts.map(post => new Post(post))
-
-
-
-
     }
 
+    async createComment(commentData) {
+        const res = await api.post(`api/posts`, commentData)
+        const newPost = new Post(res.data)
+        AppState.posts.push(newPost)
+    }
 
+    async destroyComment(postId) {
+        const res = await api.delete(`api/posts/${postId}`)
+        logger.log('Comment got destroyed!', res.data)
+        this.clearData()
+    }
+
+    clearData() {
+        AppState.activePost = null
+    }
 }
 
 export const postsService = new PostsService()
