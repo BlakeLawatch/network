@@ -17,8 +17,8 @@
                             <input v-model="editable.picture" class="form-control" id="picture" type="url" maxlength="5000">
                         </div>
                         <div>
-                            <label for="coverimg" class="form-label">Cover Image</label>
-                            <input v-model="editable.coverimg" class="form-control" id="coverimg" type="url"
+                            <label for="coverImg" class="form-label">Cover Image</label>
+                            <input v-model="editable.coverImg" class="form-control" id="coverImg" type="url"
                                 maxlength="5000">
                         </div>
                         <div>
@@ -26,12 +26,12 @@
                             <input v-model="editable.bio" class="form-control" id="bio" type="url" maxlength="5000">
                         </div>
                         <div>
-                            <label for="graduated" class="form-label">Graduated?</label>
-                            <input v-model="editable.graduated" class="form-control" id="graduated" type="checkbox">
+                            <label for="graduated">Graduated?</label>
+                            <input v-model="editable.graduated" class="checkbox fs-1" id="graduated" type="checkbox">
                         </div>
-                        <div v-if="graduated">
+                        <div>
                             <label for="class" class="form-label">class?</label>
-                            <input v-model="editable.class" class="form-control" id="class" type="checkbox">
+                            <input v-model="editable.class" class="form-control" id="class" type="number" maxlength="2024">
                         </div>
                         <div>
                             <label for="linkedin" class="form-label">linkedin</label>
@@ -61,23 +61,40 @@
 
 
 <script>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { profilesService } from '../services/ProfilesService';
 import { Modal } from 'bootstrap';
+import Pop from '../utils/Pop';
+import { AppState } from '../AppState';
+
+
 
 
 export default {
     setup() {
+
+        // watchEffect(() => {
+        //     if (AppState.profile) {
+        //         editable.value = { ...AppState.profile }
+        //     }
+        //     else editable.value = {}
+        // })
         const editable = ref({})
         return {
             editable,
 
 
 
+
             async editProfile() {
-                const editData = editable.value
-                await profilesService.editProfile(editData)
-                Modal.getOrCreateInstance('#editProfile').hide()
+                try {
+                    const editData = editable.value
+                    await profilesService.editProfile(editData)
+                    Modal.getOrCreateInstance('#editProfile').hide()
+
+                } catch (error) {
+                    Pop.error(error)
+                }
             }
         }
     }

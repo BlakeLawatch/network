@@ -15,11 +15,6 @@
           <!-- TODO fix the params -->
         </div>
 
-        <!-- <div v-for="prop in props" :key="prop" class="col-12 col-md-3">
-          <PromosComponent :promo="promos" />
-
-        </div> -->
-
         <div v-for="post in posts" :key="post.id"
           class="col-12 col-md-9 ps-4 my-3 shadow background-color py-4 rounded ms-4">
           <PostCardComponent :post="post" />

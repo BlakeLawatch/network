@@ -20,9 +20,14 @@
                     </div>
                     {{ profile.bio }}
                 </div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfile"> Edit
-                    Profile
-                </button>
+                <div>
+                    <button v-if="account.id == profile.id" type="button" class="btn btn-primary my-2"
+                        data-bs-toggle="modal" data-bs-target="#editProfile">
+                        Edit
+                        Profile
+                    </button>
+
+                </div>
                 <EditProfileComponent />
                 <div v-for="post in posts" :key="post.id"
                     class="col-12 col-md-9 ps-4 my-3 shadow background-color py-4 rounded ms-4">
@@ -81,6 +86,7 @@ export default {
         return {
             profile: computed(() => AppState.profile),
             posts: computed(() => AppState.posts),
+            account: computed(() => AppState.account)
         };
     },
     components: { ChangePageComponent, EditProfileComponent }

@@ -9,7 +9,7 @@ export class Profile {
         this.linkedin = data.linkedin
         this.resume = data.resume
         this.class = data.class
-        this.graduated = data.graduated
+        this.graduated = data.graduated || false
         this.createdAt = new Date(data.createdAt)
         this.updatedAt = new Date(this.updatedAt)
         this.likes = data.likes

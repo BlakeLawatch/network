@@ -14,6 +14,7 @@ class ProfilesService {
         const res = await api.get(`api/profiles/${profileId}`)
         // logger.log('got post by its id', res.data)
         AppState.profile = new Profile(res.data)
+
     }
 
     async getPostsById(profileId) {
@@ -22,14 +23,17 @@ class ProfilesService {
         AppState.posts = res.data.posts.map((pojo) => new Post(pojo))
         AppState.older = res.data.older
         logger.log('getting all posts by creator id in the service', res.data)
+
     }
 
     async editProfile(editData) {
-        const res = await api.put(`api/profiles/${editData.id}`, editData)
+        const res = await api.put(`api/account/${editData.id}`, editData)
         logger.log('I edited it', res.data)
         AppState.profile = new Profile(res.data)
 
     }
+
+
 
 }
 
