@@ -1,5 +1,6 @@
 export class Promo {
     constructor(data) {
+        this.id = data.id
         this.title = data.title
         this.linkURL = data.linkURL
         this.tall = data.tall
@@ -7,6 +8,7 @@ export class Promo {
         this.banner = data.banner
     }
 }
+
 
 // {
 //     "title": {

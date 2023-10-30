@@ -28,6 +28,12 @@ const routes = [
     component: loadPage('ProfileDetailsPage'),
 
   },
+  {
+    path: '/posts?query=',
+    name: 'Search',
+    component: loadPage('SearchPage'),
+
+  },
 ]
 
 export const router = createRouter({

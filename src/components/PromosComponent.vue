@@ -1,9 +1,10 @@
 <template>
     <div class="container-fluid">
         <section class="row">
-            <div class="col-12 col-md-2">
-                {{ Promo }}
-                <!-- <img :src="promo.banner" alt=""> -->
+            <div v-if="promo" class="d-flex my-2 product">
+
+                <img class="mx-1 image-fluid" :src="promo.banner" alt="">
+
             </div>
         </section>
     </div>
@@ -11,11 +12,12 @@
 
 
 <script>
-import { promosService } from '../services/PromosService.js'
+
 import { computed, onMounted } from 'vue';
-import Pop from '../utils/Pop';
-import { Promo } from '../models/Promo';
+
+// import { Promo } from '../models/Promo';
 import { AppState } from '../AppState';
+import { Promo } from '../models/Promo';
 
 
 
@@ -23,18 +25,11 @@ import { AppState } from '../AppState';
 export default {
     props: { promo: { type: Promo, required: true } },
     setup() {
-        async function getPromos() {
-            try {
-                await promosService.getPromos()
 
-            } catch (error) {
-                Pop.error(error)
-            }
-        }
 
 
         onMounted(() => {
-            getPromos()
+
         })
         return {
             promos: computed(() => AppState.promos)
@@ -44,4 +39,9 @@ export default {
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.product {
+    height: 15vh;
+    width: 60vw;
+}
+</style>

@@ -6,7 +6,7 @@
 
 
 <script>
-import { computed, onMounted } from 'vue';
+import { computed } from 'vue';
 import { AppState } from '../AppState';
 import { postsService } from '../services/PostsService';
 import Pop from '../utils/Pop';

@@ -1,4 +1,5 @@
 
+
 import { AppState } from "../AppState"
 import { Post } from "../models/Post"
 import { Profile } from "../models/Profile"
@@ -21,10 +22,14 @@ class ProfilesService {
         AppState.posts = res.data.posts.map((pojo) => new Post(pojo))
         AppState.older = res.data.older
         logger.log('getting all posts by creator id in the service', res.data)
-
-
     }
 
+    async editProfile(editData) {
+        const res = await api.put(`api/profiles/${editData.id}`, editData)
+        logger.log('I edited it', res.data)
+        AppState.profile = new Profile(res.data)
+
+    }
 
 }
 

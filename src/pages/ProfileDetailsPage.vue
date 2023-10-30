@@ -20,6 +20,10 @@
                     </div>
                     {{ profile.bio }}
                 </div>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfile"> Edit
+                    Profile
+                </button>
+                <EditProfileComponent />
                 <div v-for="post in posts" :key="post.id"
                     class="col-12 col-md-9 ps-4 my-3 shadow background-color py-4 rounded ms-4">
                     <PostCardComponent :post="post" />
@@ -39,6 +43,7 @@ import Pop from '../utils/Pop';
 import { useRoute } from 'vue-router';
 import { profilesService } from '../services/ProfilesService.js';
 import ChangePageComponent from '../components/ChangePageComponent.vue';
+import EditProfileComponent from '../components/EditProfileComponent.vue';
 
 
 
@@ -78,7 +83,7 @@ export default {
             posts: computed(() => AppState.posts),
         };
     },
-    components: { ChangePageComponent }
+    components: { ChangePageComponent, EditProfileComponent }
 };
 </script>
 
@@ -102,3 +107,4 @@ export default {
     background-color: #0dcaf03a;
 }
 </style>
+
