@@ -18,7 +18,7 @@
 
     <div class="d-flex justify-content-end pe-4 fs-5">
         {{ post.createdAt.toLocaleDateString() }}
-        <i class="mx-3 mdi mdi-heart"></i>
+        <i class="mx-3 mdi mdi-heart-circle-outline"></i>
         {{ post.likes.length }}
     </div>
     <div v-if="post.creatorId == account.id">

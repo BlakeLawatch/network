@@ -14,7 +14,8 @@
                         </div>
                         <div>
                             <label for="picture" class="form-label">Profile picture</label>
-                            <input v-model="editable.picture" class="form-control" id="picture" type="url" maxlength="5000">
+                            <input v-model="editable.picture" class="form-control" id="picture" type="url" name="picture"
+                                maxlength="5000">
                         </div>
                         <div>
                             <label for="coverImg" class="form-label">Cover Image</label>
@@ -82,6 +83,8 @@ export default {
         const editable = ref({})
         return {
             editable,
+            profile: computed(() => AppState.profile),
+            account: computed(() => AppState.account),
 
 
 
@@ -89,6 +92,8 @@ export default {
             async editProfile() {
                 try {
                     const editData = editable.value
+
+
                     await profilesService.editProfile(editData)
                     Modal.getOrCreateInstance('#editProfile').hide()
 

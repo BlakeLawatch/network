@@ -16,7 +16,10 @@
                             <i v-if="profile.resume" class="mdi mdi-file-account" title="Check out my resume"></i>
                             <i v-if="profile.github" class="mdi mdi-github" title="Go to my Github"></i>
                         </div>
-                        <ChangePageComponent />
+                        <div class="my-2">
+                            <ChangePageComponent />
+
+                        </div>
                     </div>
                     {{ profile.bio }}
                 </div>
