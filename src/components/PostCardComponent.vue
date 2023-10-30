@@ -61,6 +61,7 @@ export default {
                     const postId = props.post.id
                     logger.log('got the id for the delete?', postId)
                     await postsService.destroyComment(postId)
+                    Pop.success('You deleted your post')
 
                 } catch (error) {
                     Pop.error(error)

@@ -24,11 +24,11 @@
                         </div>
                         <div>
                             <label for="bio" class="form-label">Bio</label>
-                            <input v-model="editable.bio" class="form-control" id="bio" type="url" maxlength="5000">
+                            <input v-model="editable.bio" class="form-control" id="bio" type="text" maxlength="5000">
                         </div>
                         <div>
                             <label for="graduated">Graduated?</label>
-                            <input v-model="editable.graduated" class="checkbox fs-1" id="graduated" type="checkbox">
+                            <input v-model="editable.graduated" class="checkbox" id="graduated" type="checkbox">
                         </div>
                         <div>
                             <label for="class" class="form-label">class?</label>

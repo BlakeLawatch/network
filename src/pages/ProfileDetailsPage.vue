@@ -9,12 +9,15 @@
                     <div class="d-flex justify-content-between">
                         <img class="creator-img rounded-circle" :src="profile.picture" :alt="profile.name">
                         <h2>{{ profile.name }}</h2>
-                        <div class="fs-3">
+                        <div class="d-flex fs-3">
                             <i v-if="profile.graduated" class="mdi mdi-account-school-outline"></i>
                             <h5 v-if="profile.class"> {{ profile.class }} </h5>
-                            <i v-if="profile.linkedin" class="mdi mdi-linkedin" title="Go to my Linkedin"></i>
-                            <i v-if="profile.resume" class="mdi mdi-file-account" title="Check out my resume"></i>
-                            <i v-if="profile.github" class="mdi mdi-github" title="Go to my Github"></i>
+                            <a :href="profile.linkedin" :target="_blank"><i v-if="profile.linkedin" class="mdi mdi-linkedin"
+                                    title="Go to my Linkedin"></i></a>
+                            <a :href="profile.resume" :target="_blank"><i v-if="profile.resume" class="mdi mdi-file-account"
+                                    title="Check out my resume"> </i></a>
+                            <a :href="profile.github" :target="_blank"><i v-if="profile.github" class="mdi mdi-github"
+                                    title="Go to my Github"> </i></a>
                         </div>
                         <div class="my-2">
                             <ChangePageComponent />
@@ -45,19 +48,22 @@
 
 
 <script>
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, watchEffect } from 'vue';
 import { AppState } from '../AppState.js';
 import Pop from '../utils/Pop';
 import { useRoute } from 'vue-router';
 import { profilesService } from '../services/ProfilesService.js';
 import ChangePageComponent from '../components/ChangePageComponent.vue';
 import EditProfileComponent from '../components/EditProfileComponent.vue';
+import { Profile } from '../models/Profile';
 
 
 
 
 export default {
+    props: { profileProp: { type: Profile, required: true } },
     setup() {
+
         const route = useRoute();
         async function getActiveProfile() {
             try {
