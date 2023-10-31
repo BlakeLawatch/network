@@ -18,7 +18,7 @@
 
     <div class="d-flex justify-content-end pe-4 fs-5">
         {{ post.createdAt.toLocaleDateString() }}
-        <i class="mx-3 mdi mdi-heart-circle-outline"></i>
+        <i @click="likePosts()" role="button" class="mx-3 mdi mdi-heart-circle-outline"></i>
         {{ post.likes.length }}
     </div>
     <div v-if="post.creatorId == account.id">
@@ -49,6 +49,17 @@ export default {
         return {
             activePost: computed(() => AppState.activePost),
             account: computed(() => AppState.account),
+            likes: computed(() => AppState.likes),
+
+            async likePosts() {
+                try {
+                    const likeId = this.account.id
+                    await postsService.likePosts(likeId)
+
+                } catch (error) {
+                    Pop.error(error)
+                }
+            },
 
             async destroyComment() {
                 try {

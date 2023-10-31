@@ -12,11 +12,11 @@
                         <div class="d-flex fs-3">
                             <i v-if="profile.graduated" class="mdi mdi-account-school-outline"></i>
                             <h5 v-if="profile.class"> {{ profile.class }} </h5>
-                            <a :href="profile.linkedin" :target="_blank"><i v-if="profile.linkedin" class="mdi mdi-linkedin"
+                            <a :href="profile.linkedin"><i v-if="profile.linkedin" class="mdi mdi-linkedin"
                                     title="Go to my Linkedin"></i></a>
-                            <a :href="profile.resume" :target="_blank"><i v-if="profile.resume" class="mdi mdi-file-account"
+                            <a :href="profile.resume"><i v-if="profile.resume" class="mdi mdi-file-account"
                                     title="Check out my resume"> </i></a>
-                            <a :href="profile.github" :target="_blank"><i v-if="profile.github" class="mdi mdi-github"
+                            <a :href="profile.github"><i v-if="profile.github" class="mdi mdi-github"
                                     title="Go to my Github"> </i></a>
                         </div>
                         <div class="my-2">

@@ -20,5 +20,8 @@ export const AppState = reactive({
   profile: null,
 
   /** @type {import('./models/Promo.js').Promo []} */
-  promos: []
+  promos: [],
+
+  /** @type {import('./models/Like.js').like []} */
+  likes: []
 })

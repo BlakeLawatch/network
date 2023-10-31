@@ -37,6 +37,12 @@ class PostsService {
         this.clearData()
     }
 
+    async likePosts(likeId) {
+        const res = await api.post(`api/posts/${likeId}/like`)
+        logger.log('you liked this post', res.data)
+        AppState.likes.push(likeId)
+    }
+
     clearData() {
         AppState.activePost = null
     }
